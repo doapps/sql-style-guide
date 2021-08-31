@@ -638,4 +638,22 @@ END;
 ```
 
 
+## Stored procedures
+The stored procedure names need to start with the prefix 'sp_', must be in lower case and contain a verb.
+
+```sql
+CREATE PROCEDURE sp_get_movies()
+BEGIN
+    select title,description,release_year,rating from movies;
+END
+```
+
+## Triggers
+The trigger name need to start with the prefix 'tr_', must be in lower case and contain the table name with the action name.
+
+```sql
+CREATE TRIGGER tr_payrolls_after_insert AFTER INSERT ON payrolls
+       FOR EACH ROW SET @sum = @sum + NEW.amount;
+```
+
   

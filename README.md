@@ -656,4 +656,68 @@ CREATE TRIGGER tr_payrolls_after_insert AFTER INSERT ON payrolls
        FOR EACH ROW SET @sum = @sum + NEW.amount;
 ```
 
+# MongoDB Style Guideline
+
+This is a small section where you can see the mongodb style guides which you can follow to implement your databases.
+
+
+
+## Conventions to cover
+
+- Database
+- Tables
+- Columns
+- Functions
+
+  
+## Database
+Database names must consist of the letter a to z(letters in lower case),the numbers 0 to 9 and the underscore(_) or dash(-) symbols. In addition to this, the database 
+names always need to start with a lettter.
+
+
+```sql
+use my_database
+```
+
+
+## Tables
+The table name need to be in plural form and not add a prefix like 'tbl' or any other such a descriptive prefix. Avoid as posible concatenating two tables names together to create the name of a relationship
+table.
+
+```mongodb
+db.createCollection( services,
+   {
+     ....
+   }
+)
+```
+
+## Columns
+The column names always need to be in singular name and in lower case, where possible avoid simply using id ad the primary identifier for the table. In addition to this, tables must have at least one key to be complete and useful.
+
+```mongodb
+db.createCollection( services,
+   {
+     name: "maintenance"
+   }
+)
+```
+
+
+## Functions
+
+```mongodb
+{
+  $function: {
+    body: function(name, scores) {
+            let total = Array.sum(scores);
+            return `Hello ${name}.  Your total score is ${total}.`
+    },
+    args: [ "$name", "$scores"],
+    lang: "js"
+  }
+}
+
+```
+
   
